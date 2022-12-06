@@ -59,7 +59,7 @@ for (let i=0; i<images.length; i++){
    console.log(images[i].image, images[i].title, images[i].text);
    wrapperImage.innerHTML +=  
    `<div>
-      image url: <img src="../img/${images[i].image}>
+      image url: <img src= "./${images[i].image}">
     </div> `;
 
 }
