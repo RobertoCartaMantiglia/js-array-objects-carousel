@@ -49,8 +49,19 @@ const previousButton = document.querySelector(".previous");
 
 const nextButton = document.querySelector(".next");
 
+const wrapperImage = document.querySelector(".carousel-image");
+console.log(wrapperImage);
+
+const saveImg = [];
+
+
 for (let i=0; i<images.length; i++){
    console.log(images[i].image, images[i].title, images[i].text);
+   wrapperImage.innerHTML +=  
+   `<div>
+      image url: <img src="./img/${images[i].image}" alt="First image">
+    </div> `;
+
 }
 
 
