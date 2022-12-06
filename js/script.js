@@ -52,16 +52,37 @@ const nextButton = document.querySelector(".next");
 const wrapperImage = document.querySelector(".carousel-image");
 console.log(wrapperImage);
 
+
+//creo un altro array dove salvare le imgs
 const saveImg = [];
 
 
 for (let i=0; i<images.length; i++){
-   console.log(images[i].image, images[i].title, images[i].text);
-   wrapperImage.innerHTML +=  
-   `<div>
-      image url: <img src= "./${images[i].image}">
-    </div> `;
+
+   const newDiv = document.createElement("div");
+   wrapperImage.append(newDiv);
+   newDiv.classList.add("my_carousel-item");
+
+   newDiv.innerHTML =  
+   `<img src= "./${images[i].image}"> `;
+
+   saveImg.push(newDiv);
 
 }
+console.log(saveImg);
+
+// creo una variabile contatore da assegnare
+let contatore = 0;
+
+//creo gli eventi legati ai tasti
+
+previousButton.addEventListener("click", function(){
+   
+   contatore --; 
+});
 
 
+
+nextButton.addEventListener("click", function(){
+  contatore ++;
+});
