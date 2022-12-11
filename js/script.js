@@ -44,45 +44,46 @@ const images = [
 
 
 
-// recupero i bottoni dal index 
-const previousButton = document.querySelector(".previous");
-
-const nextButton = document.querySelector(".next");
-
 const wrapperImage = document.querySelector(".carousel-image");
-console.log(wrapperImage);
 
 
-//creo un altro array dove salvare le imgs
-const saveImg = [];
-
-
-for (let i=0; i<images.length; i++){
-
-   const newDiv = document.createElement("div");
-   wrapperImage.append(newDiv);
-   newDiv.classList.add("my_carousel-item");
-
-   newDiv.innerHTML =  
-   `<img src= "./${images[i].image}"> `;
-
-   saveImg.push(newDiv);
-
-}
-console.log(saveImg);
-
-// creo una variabile contatore da assegnare
-let contatore = 0;
-
-//creo gli eventi legati ai tasti
-
-previousButton.addEventListener("click", function(){
-   
-   contatore --; 
+images.forEach((slide) => {
+   wrapperImage.innerHTML +=  
+   `<div class = "my_carousel-item">
+      <img src="${slide.image}" alt="First image">
+   </div>`;
 });
 
+// creo una variabile contatore da assegnare alle img
+let contatore = 0;
 
+//prendo l'elemento con la classe che mi interessa, gli accorpo il valore del contatore e, aggiungo la classe active in modo che si veda
+document.getElementsByClassName("my_carousel-item") [contatore].classList.add("active");
+
+//richiamo il tasto prev
+const previousButton = document.getElementById("previous-button");
+//creo gli eventi legati ai tasti
+previousButton.addEventListener("click", function(){
+   //si dovrà vedere solo un'immagine per volta; bisogna ora rimuovere l'active da una img e assegnarla all'altra
+   document.querySelector("div.my_carousel-item.active").classList.remove("active");
+   if(contatore <= 0){
+      contatore = 4;
+   }else{
+      contatore = contatore -1;
+   }
+   document.getElementsByClassName("my_carousel-item")[contatore].classList.add("active");
+   // riaggiungi la classe all'immagine corrente
+});
+
+const nextButton = document.getElementById("next-button");
 
 nextButton.addEventListener("click", function(){
-  contatore ++;
+   document.querySelector("div.my_carousel-item.active").classList.remove("active");
+
+   if (contatore >= 4) {
+      contatore = 0;
+   } else{
+      contatore = contatore +1;
+   }
+   document.getElementsByClassName("my_carousel-item")[contatore].classList.add("active");
 });
